@@ -6,6 +6,8 @@
     <title>姚泓丞 - 个人学术网站</title>
     <link href="https://fonts.googleapis.com/css2?family=Noto+Sans+SC:wght@400;500;700&display=swap" rel="stylesheet">
     <script src="https://cdn.jsdelivr.net/particles.js/2.0.0/particles.min.js"></script>
+    <script async src="//busuanzi.ibruce.info/busuanzi/2.3/busuanzi.pure.mini.js"></script>
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.15.4/css/all.min.css">
     <style>
         :root {
             --primary-color: #2196F3;
@@ -254,6 +256,61 @@
         .publication a:hover::after {
             opacity: 1;
         }
+
+        .footer-content {
+            max-width: 1200px;
+            margin: auto;
+            padding: 20px;
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            gap: 15px;
+        }
+
+        .visitor-stats {
+            display: flex;
+            gap: 20px;
+            flex-wrap: wrap;
+            justify-content: center;
+            margin-bottom: 10px;
+        }
+
+        .stat-item {
+            display: flex;
+            align-items: center;
+            gap: 8px;
+            background: rgba(255, 255, 255, 0.15);
+            padding: 8px 16px;
+            border-radius: 20px;
+            font-size: 0.9em;
+            transition: all 0.3s ease;
+        }
+
+        .stat-item:hover {
+            background: rgba(255, 255, 255, 0.2);
+            transform: translateY(-2px);
+        }
+
+        .stat-item i {
+            font-size: 1.1em;
+        }
+
+        .copyright {
+            opacity: 0.8;
+            font-size: 0.9em;
+        }
+
+        @media (max-width: 768px) {
+            .visitor-stats {
+                flex-direction: column;
+                align-items: center;
+            }
+            
+            .stat-item {
+                width: 200px;
+                justify-content: center;
+            }
+        }
     </style>
 </head>
 <body>
@@ -278,7 +335,7 @@
 
     <div class="container">
         <section id="home">
-            <img src="hongcherry.jpg" alt="姚泓丞的照片" class="profile-img">
+            <img src="https://github.com/[用户名]/[仓库名]/assets/[图片链接]" alt="姚泓丞的照片" class="profile-img">
             <p style="text-align: center; font-size: 1.1rem; line-height: 1.8;">
                 您好！我是姚泓丞，目前在南通大学攻读信息与通信工程硕士学位。<br>
                 我的研究方向是特征选择、演化计算、机器学习等。
@@ -289,8 +346,8 @@
             <h2>学术背景</h2>
             <h3>教育经历</h3>
             <ul>
-                <li>2018~2022  衡水学院 - 物联网工程 学士</li>
-                <li>2022~至今  南通大学 - 信息与通信工程 硕士（在读）</li>
+                <li>衡水学院 - 物联网工程 学士</li>
+                <li>南通大学 - 信息与通信工程 硕士（在读）</li>
             </ul>
             <h3>荣誉奖项</h3>
             <ul>
@@ -360,7 +417,29 @@
     </div>
 
     <footer>
-        <p>&copy; 2024 姚泓丞. 保留所有权利。</p>
+        <div class="footer-content">
+            <div class="visitor-stats">
+                <div class="stat-item">
+                    <i class="fas fa-eye"></i>
+                    <span id="busuanzi_container_site_pv">
+                        总访问量 <span id="busuanzi_value_site_pv"></span>
+                    </span>
+                </div>
+                <div class="stat-item">
+                    <i class="fas fa-user"></i>
+                    <span id="busuanzi_container_site_uv">
+                        访客数 <span id="busuanzi_value_site_uv"></span>
+                    </span>
+                </div>
+                <div class="stat-item">
+                    <i class="fas fa-clock"></i>
+                    <span id="runtime_span"></span>
+                </div>
+            </div>
+            <div class="copyright">
+                <p>&copy; 2024 姚泓丞. 保留所有权利。</p>
+            </div>
+        </div>
     </footer>
 
     <script>
@@ -476,6 +555,24 @@
             cursor.style.opacity = '1';
             follower.style.opacity = '1';
         });
+
+        function showRuntime() {
+            // 设置网站开始运行的时间（修改为您的网站上线时间）
+            const startTime = new Date("2024-03-20").getTime();
+            const currentTime = new Date().getTime();
+            const runTime = (currentTime - startTime) / 1000;
+            
+            const day = Math.floor(runTime / (24 * 3600));
+            const hour = Math.floor((runTime - day * 24 * 3600) / 3600);
+            const minute = Math.floor((runTime - day * 24 * 3600 - hour * 3600) / 60);
+            
+            document.getElementById("runtime_span").innerHTML = 
+                `运行时间 ${day}天${hour}时${minute}分`;
+        }
+
+        // 每分钟更新一次运行时间
+        showRuntime();
+        setInterval(showRuntime, 60000);
     </script>
 </body>
 </html> 
